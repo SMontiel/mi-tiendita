@@ -12,6 +12,9 @@
 */
 Route::get('/', 'ProductoController@all');
 
+Route::get('/detalle-producto/{id}', 'ProductoController@showProduct');
+
+Route::get('/agregar-a-carrito/{id}', 'ProductoController@addProductToCart');
 
 /*Route::get('/test', function () {
     return view('child');
