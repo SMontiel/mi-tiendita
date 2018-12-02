@@ -17,4 +17,14 @@ class ProductoController extends Controller
     {
         return view('productos', ['productos' => Producto::all()]);
     }
+
+    public function showProduct($id) {
+        $value = session('key');
+        return view('detalle-producto', ['producto' => Producto::find($id)]);
+    }
+
+    public function addProductToCart($id) {
+        session(['key' => 'Salvador']);
+        return redirect('/');
+    }
 }
