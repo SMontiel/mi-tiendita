@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 
 use PayPal\Rest\ApiContext;
 use PayPal\Auth\OAuthTokenCredential;
@@ -19,6 +20,9 @@ use PayPal\Api\RedirectUrls;
 use PayPal\Api\ExecutePayment;
 use PayPal\Api\PaymentExecution;
 use PayPal\Api\Transaction;
+use App\Orden;
+use App\OrdenItem;
+use Illuminate\Support\Facades\Log;
 
 class PaypalController extends Controller {
     private $_api_context;
@@ -119,10 +123,10 @@ class PaypalController extends Controller {
         // clear the session payment ID
         \Session::forget('paypal_payment_id');
 
-        $payerId = \Input::get('PayerID');
-        $token = \Input::get('token');
+        $payerId = Input::get('PayerID');
+        $token = Input::get('token');
 
-        //if (empty(\Input::get('PayerID')) || empty(\Input::get('token'))) {
+        //if (empty(Input::get('PayerID')) || empty(Input::get('token'))) {
         if (empty($payerId) || empty($token)) {
             return \Redirect::route('inicio')
                 ->with('message', 'Hubo un problema al intentar pagar con Paypal');
@@ -135,7 +139,7 @@ class PaypalController extends Controller {
         // The payer_id is added to the request query parameters
         // when the user is redirected from paypal back to your site
         $execution = new PaymentExecution();
-        $execution->setPayerId(\Input::get('PayerID'));
+        $execution->setPayerId(Input::get('PayerID'));
 
         //Execute the payment
         $result = $payment->execute($execution, $this->_api_context);
@@ -154,7 +158,7 @@ class PaypalController extends Controller {
 
             \Session::forget('carrito');
 
-            return \Redirect::route('inicio')
+            return \Redirect::route('index')
                 ->with('message', 'Compra realizada de forma correcta');
         }
         return \Redirect::route('inicio')
@@ -171,7 +175,7 @@ class PaypalController extends Controller {
         $order = Orden::create([
             'subtotal' => $subtotal,
             'gasto_envio' => 100,
-            'idusuario' => \Auth::user()->id
+            'id_usuario' => Auth::user()['id']
         ]);
 
         foreach($carrito as $item){
@@ -179,13 +183,12 @@ class PaypalController extends Controller {
         }
     }
 
-    private function saveOrderItem($item, $order_id)
-    {
+    private function saveOrderItem($item, $order_id) {
         OrdenItem::create([
             'cantidad' => $item->cantidad,
             'precio' => $item->precio,
-            'idproducto' => $item->idproducto,
-            'idorden' => $order_id
+            'id_producto' => $item->id,
+            'id_orden' => $order_id
         ]);
     }
 }
