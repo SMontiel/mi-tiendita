@@ -37,7 +37,22 @@
         @include('footer')
       </div>
 
-
       <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+
+      <script type="text/javascript">
+        const buttons = document.querySelectorAll('.btn-update-item');
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].onclick = function(e) {
+                console.log('Hello');
+
+                e.preventDefault();
+
+                var id = this.getAttribute('data-id');
+                var href = this.getAttribute('data-href');
+                var cantidad = document.getElementById('producto_' + id).value;
+                window.location.href = href + "/" + cantidad;
+            };
+        }
+      </script>
     </body>
 </html>

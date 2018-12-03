@@ -13,10 +13,10 @@
                 </div>
                 <p class="text-soft-black">{{ $prod->nombre }}</p>
                 <div class="flex justify-around items-center h-10">
-                    <a href="/agregar-a-carrito/{{ $prod->id }}" class="rounded no-underline bg-secondary px-2 py-1 text-black border-2 border-secondary hover:bg-white hover:text-black">
+                    <a href="{{route('carrito-agregar', $prod->id)}}" class="rounded no-underline bg-secondary px-2 py-1 text-black border-2 border-secondary hover:bg-white hover:text-black">
                         Agregar al <i class="fas fa-cart-plus"></i>
                     </a>
-                    <a href="/detalle-producto/{{ $prod->id }}" class="rounded no-underline bg-tertiary px-2 py-1 text-white border-2 border-tertiary hover:bg-white hover:text-black">
+                    <a href="/detalles-producto/{{ $prod->id }}" class="rounded no-underline bg-tertiary px-2 py-1 text-white border-2 border-tertiary hover:bg-white hover:text-black">
                         Ver <i class="fa fa-sm fa-plus"></i>
                     </a>
                 </div>
