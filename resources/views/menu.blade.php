@@ -1,4 +1,4 @@
-<div class="px-16 py-4 border-b shadow bg-primary">
+<div class="px-16 py-2 shadow bg-primary border-tertiary border-t-4">
   <nav class="flex items-center justify-between flex-wrap">
     <a class="no-underline flex items-center text-soft-black" href="/">
       <img src="{{ asset('images/don-balon.png') }}" class="fill-current h-16 w-16 mr-2" alt="Logo">
