@@ -51,3 +51,17 @@ Route::get('orden-detalle',[
     'as'=>'orden-detalle',
     'uses'=>'CarritoController@ordenDetalle'
 ]);
+
+//Enviamos nuestro pedido a PayPal
+Route::get('payment', array(
+    'as' => 'payment',
+    'uses' => 'PaypalController@postPayment'
+    )
+);
+
+// Después de realizar el pago Paypal redirecciona a esta ruta
+Route::get('payment/status', array(
+    'as' => 'payment.status',
+    'uses' => 'PaypalController@getPaymentStatus'
+    )
+);

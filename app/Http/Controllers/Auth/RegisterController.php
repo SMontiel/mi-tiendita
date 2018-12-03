@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Laravolt\Avatar\Facade as Avatar;
 
 class RegisterController extends Controller
 {
@@ -62,10 +63,17 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data) {
+        $destinationPath = '/storage/avatars/'.time().'.png';
+        $completePath = public_path().$destinationPath;
+        $urlFoto = url($destinationPath);
+        \Log::info($urlFoto);
+        Avatar::create($data['name'])->save($completePath);
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'url_foto' => $urlFoto,
         ]);
     }
 }
