@@ -10,21 +10,24 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', 'ProductoController@all');
+Route::get('/', [
+    'as'=>'index',
+    'uses'=>'ProductoController@all'
+]);
 
 Route::get('/detalles-producto/{id}', 'ProductoController@showProduct');
 
-Route::get('/agregar-a-carrito/{producto}',[
+Route::get('/agregar-a-carrito/{producto}', [
     'as'=>'carrito-agregar',
     'uses'=>'CarritoController@add'
 ]);
 
-Route::get('carrito',[
+Route::get('carrito', [
     'as'=>'carrito',
     'uses'=>'CarritoController@show'
 ]);
 
-Route::get('carritoShow/borrar/{producto}',[
+Route::get('carritoShow/borrar/{producto}', [
     'as'=>'carrito-borrar',
     'uses'=>'CarritoController@remove'
 ]);
@@ -39,6 +42,12 @@ Route::get('carrito/actualizar/{producto}/{cantidad?}',[
     'uses'=>'CarritoController@update'
 ]);
 
-/*Route::get('/test', function () {
-    return view('child');
-});*/
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('orden-detalle',[
+    'middleware'=>'auth',
+    'as'=>'orden-detalle',
+    'uses'=>'CarritoController@ordenDetalle'
+]);

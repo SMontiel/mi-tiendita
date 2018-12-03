@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Log;
 class CarritoController extends Controller {
 
     public function __construct(){
-        //$this->middleware('auth');
+        $this->middleware('auth');
         if(!\Session::has('carrito')) \Session::put('carrito', array());
     }
 
@@ -59,5 +59,15 @@ class CarritoController extends Controller {
         }
 
         return $total;
+    }
+
+    public function ordenDetalle(){
+        if(count(\Session::get('carrito'))<=0) return redirect()->route('index');
+        $carrito = \Session::get('carrito');
+//        dd($carrito);
+        $total = $this->total();
+//        dd($total);
+
+        return view('orden-detalle', compact('carrito', 'total'));
     }
 }

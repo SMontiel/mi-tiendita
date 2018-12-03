@@ -60,6 +60,10 @@
         <h3><span class="label label-warning">No existen productos añadidos :'(</span></h3>
         @endif
         <hr>
+        <p>
+            <a href="{{route('index')}}" class="btn btn-primary"><i class="fa fa-chevron-circle-left"></i> Seguir comprando</a>
+            <a href="{{route('orden-detalle')}}" class="btn btn-warning">Continuar <i class="fa fa-chevron-circle-right"></i></a>
+        </p>
 
     </div>
 </div>
