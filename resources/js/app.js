@@ -8,12 +8,6 @@
 // require('./bootstrap');
 
 window.Vue = require('vue');
-const Masonry = require('masonry-layout');
-var msnry = new Masonry( '.grid', {
-  // options...
-  itemSelector: '.grid-item',
-  columnWidth: 200
-});
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
