@@ -14,7 +14,7 @@
             <h1 class="text-blue mt-2">$ {{ $producto->precio }}</h1>
             <p class="text-grey-dark text-lg pt-4">{{ $producto->descripcion }}</p>
             <div class="mt-8">
-                <a href="" class="rounded no-underline bg-secondary px-2 py-1 text-black border-2 border-secondary hover:bg-white hover:text-black">
+                <a href="{{route('carrito-agregar', $producto->id)}}" class="rounded no-underline bg-secondary px-2 py-1 text-black border-2 border-secondary hover:bg-white hover:text-black">
                     <i class="fas fa-cart-plus"></i> Agregar al carrito
                 </a>
             </div>
