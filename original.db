@@ -1,8 +1,4 @@
-
 INSERT INTO `categoria` VALUES (1,'Ropa',NULL,NULL);
-
-INSERT INTO `categoria_producto` VALUES (1,1,1,NULL,NULL),(2,1,2,NULL,NULL),(3,1,3,NULL,NULL),(4,1,4,NULL,NULL),(5,1,5,NULL,NULL),(6,1,6,NULL,NULL),(7,1,7,NULL,NULL),(8,1,8,NULL,NULL),(9,1,9,NULL,NULL),(10,1,10,NULL,NULL),(11,1,11,NULL,NULL),(12,1,12,NULL,NULL),(13,1,13,NULL,NULL);
-
 
 INSERT INTO `producto` (id, precio, codigo_barras, nombre, descripcion, url_foto, created_at, updated_at)
 VALUES
@@ -19,3 +15,5 @@ VALUES
   (11,1099.00,'11','Camiseta París Saint-Germain 2017-2018 Local','Camiseta talla C, temporada 2017-2018 local','psg-local.jpg',NULL,NULL),
   (12,1099.00,'12','Camiseta Real Madrid 2017-2018 Local','Camiseta talla C, temporada 2017-2018 local','real-madrid-local.jpg',NULL,NULL),
   (13,489.00,'13','Camiseta Toluca CF 2017-2018 Visitante','Camiseta talla M, temporada 2017-2018 visitante','toluca-visitante.jpg',NULL,NULL);
+
+INSERT INTO `categoria_producto` VALUES (1,1,1,NULL,NULL),(2,1,2,NULL,NULL),(3,1,3,NULL,NULL),(4,1,4,NULL,NULL),(5,1,5,NULL,NULL),(6,1,6,NULL,NULL),(7,1,7,NULL,NULL),(8,1,8,NULL,NULL),(9,1,9,NULL,NULL),(10,1,10,NULL,NULL),(11,1,11,NULL,NULL),(12,1,12,NULL,NULL),(13,1,13,NULL,NULL);

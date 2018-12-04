@@ -18,27 +18,30 @@
             </a>
             @if (Route::has('register'))
                 <a href="{{ route('register') }}" class="mx-2 no-underline font-sans text-grey-darker border-b-2 border-transparent hover:border-tertiary hover:text-black">
-                    {{ __('Register') }}
+                    {{ __('Regístrate') }}
                 </a>
             @endif
         @else
-            <li class="nav-item dropdown">
-                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    {{ Auth::user()->name }} <span class="caret"></span>
-                </a>
 
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
-                    </a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
+            <div class="dropdown">
+                <div class="leading-none bg-secondary-lighter hover:shadow-md hover:border-grey-darker border p-1 rounded border-soft-black">
+                    <div class="inline-flex">
+                        <img class="inline-block w-8 h-8" src="{{ Auth::user()->url_foto }}" alt="Avatar de {{ Auth::user()->name }}">
+                        <div class="block flex items-center ml-2">
+                            <span class="mr-1 font-semibold text-sm text-black">{{ Auth::user()->name }}</span>
+                            <div>
+                                <svg class="fill-current text-black h-4 w-4 block opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M4.516 7.548c.436-.446 1.043-.481 1.576 0L10 11.295l3.908-3.747c.533-.481 1.141-.446 1.574 0 .436.445.408 1.197 0 1.615-.406.418-4.695 4.502-4.695 4.502a1.095 1.095 0 0 1-1.576 0S4.924 9.581 4.516 9.163c-.409-.418-.436-1.17 0-1.615z"/></svg>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </li>
+                <div class="dropdown-content bg-secondary-lighter rounded-b">
+                    <a href="{{ route('logout') }}" class="rounded-b hover:bg-secondary px-4 py-2"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <i class="fa fa-sign-out-alt mr-2"></i>Cerrar sesión
+                    </a>
+                </div>
+            </div>
         @endguest
 
       </div>
