@@ -23,6 +23,7 @@ use PayPal\Api\Transaction;
 use App\Orden;
 use App\OrdenItem;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class PaypalController extends Controller {
     private $_api_context;
@@ -55,15 +56,25 @@ class PaypalController extends Controller {
             $items[] = $item;
             $subtotal += $producto['cantidad'] * $producto['precio'];
         }
+        $item = new Item();
+        $item->setName('Costo de Envío')
+            ->setCurrency($currency)
+            ->setDescription('00')
+            ->setQuantity(1)
+            ->setPrice(100);
+        $items[] = $item;
+        $subtotal += 100;
 
         $item_list = new ItemList();
         $item_list->setItems($items);
 
+        $taxes = bcdiv(bcmul(16, $subtotal, 2), 100, 2);
         $details = new Details();
         $details->setSubtotal($subtotal)
-        ->setShipping(100);
+        ->setShipping(0)
+        ->setTax($taxes);
 
-        $total = $subtotal + 100;
+        $total = $subtotal + $taxes;
 
         $amount = new Amount();
         $amount->setCurrency($currency)
@@ -156,13 +167,17 @@ class PaypalController extends Controller {
 
             $this->saveOrder(\Session::get('carrito'));
 
+            $carrito = \Session::get('carrito');
+
             \Session::forget('carrito');
+
+            $this->printInvoice($carrito);
 
             return \Redirect::route('index')
                 ->with('message', 'Compra realizada de forma correcta');
         }
         return \Redirect::route('inicio')
-            ->with('message', 'La compra fue cancelada');
+            ->with('error_message', 'La compra fue cancelada');
     }
 
     private function saveOrder($carrito) {
@@ -190,5 +205,26 @@ class PaypalController extends Controller {
             'id_producto' => $item->id,
             'id_orden' => $order_id
         ]);
+    }
+
+    private function printInvoice($carrito) {
+        $invoice = \ConsoleTVs\Invoices\Classes\Invoice::make('Factura');
+        foreach($carrito as $producto) {
+            $invoice = $invoice->addItem($producto['nombre'], $producto['precio'], $producto['cantidad'], $producto['codigo_barras']);
+        }
+
+        $destinationPath = '/invoices/'.Auth::user()->id.'.pdf';
+        $completePath = $destinationPath;
+
+        $invoice = $invoice->addItem('Costo de envío', 100.00, 1, 00)
+            ->number(4021)
+            ->tax(16)
+            ->notes('Salida la mercancía no se aceptan devoluciones.')
+            ->customer([
+                'name' => Auth::user()->name,
+                'id' => Auth::user()->id,
+                'location' => Auth::user()->direccion,
+            ])
+            ->save($completePath);
     }
 }
