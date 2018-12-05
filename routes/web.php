@@ -65,3 +65,8 @@ Route::get('payment/status', array(
     'uses' => 'PaypalController@getPaymentStatus'
     )
 );
+
+Route::get('/ver-factura', [
+    'middleware'=>'auth',
+    'uses'=>'ProductoController@verFactura'
+]);

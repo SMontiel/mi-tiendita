@@ -3,6 +3,13 @@
 @section('title', 'Home')
 
 @section('content')
+
+    @if (session('message'))
+        <div id="app">
+            <alert></alert>
+        </div>
+    @endif
+
     <div class="ex1 px-16 py-4 flex flex-wrap justify-around">
         @foreach ($productos as $prod)
             <div class="bump w-64 h-auto m-1 p-2 rounded shadow hover:shadow-md border bg-white">

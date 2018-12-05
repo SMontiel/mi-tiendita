@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Producto;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class ProductoController extends Controller {
     /**
@@ -18,5 +21,9 @@ class ProductoController extends Controller {
 
     public function showProduct($id) {
         return view('detalle-producto', ['producto' => Producto::find($id)]);
+    }
+
+    public function verFactura() {
+        return Storage::disk('public')->download('/invoices/'.Auth::user()->id.'.pdf');
     }
 }
