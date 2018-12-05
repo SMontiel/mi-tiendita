@@ -213,7 +213,7 @@ class PaypalController extends Controller {
             $invoice = $invoice->addItem($producto['nombre'], $producto['precio'], $producto['cantidad'], $producto['codigo_barras']);
         }
 
-        $destinationPath = '/invoices/'.Auth::user()->id.'.pdf';
+        $destinationPath = '/public/invoices/'.Auth::user()->id.'.pdf';
         $completePath = $destinationPath;
 
         $invoice = $invoice->addItem('Costo de envío', 100.00, 1, 00)
