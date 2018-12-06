@@ -53,7 +53,7 @@
             </h1>
         </div>
         @else
-        <h3><span class="label label-warning">No existen productos añadidos :'(</span></h3>
+        <h1 class="text-center my-8"><span class="label label-warning">No existen productos añadidos :'(</span></h1>
         @endif
 
     </div>

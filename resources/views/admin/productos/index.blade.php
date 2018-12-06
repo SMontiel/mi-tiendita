@@ -4,12 +4,15 @@
 
 @section('content')
 
-    <h1>Vista principal de Productos</h1>
-    <a href="{{ route('productos.create') }}" class="rounded bg-primary px-4 py-2">
-        Nuevo<i class="fa fa-plus-circle ml-1"></i>
-    </a>
+    <div class="flex justify-between items-center mx-16 my-4">
+        <p class="opacity-75 uppercase tracking-wide font-bold text-lg"><i class="fa fa-shopping-basket"></i> Vista principal de Productos</p>
+        <a href="{{route('productos.create')}}" class="no-underline bg-tertiary px-4 py-2 rounded text-white hover:bg-red">
+            Nuevo <i class="fa fa-plus-circle ml-1"></i>
+        </a>
+    </div>
 
-    <table class="table table-striped table-hover table-bordered">
+    <div class="mx-16 my-8">
+     <table class="table table-striped table-hover table-bordered">
         <thead>
             <tr>
                 <th scope="col">Código</th>
@@ -44,5 +47,6 @@
             </tr>
           @endforeach
         </tbody>
-    </table>
+      </table>
+    </div>
 @endsection
