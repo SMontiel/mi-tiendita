@@ -16,7 +16,6 @@ window.Vue = require('vue');
  */
 
 Vue.component('alert', require('./components/Alert.vue'));
-Vue.component('simple-alert', require('./components/SimpleAlert.vue'));
 
 const app = new Vue({
     el: '#app'

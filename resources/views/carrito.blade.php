@@ -3,14 +3,16 @@
 @section('title', 'Carrito de compra')
 
 @section('content')
-<div class="container text-center">
-    <div class="page-header">
-        <h1><i class="fa fa-shopping-cart"></i> Productos agregados</h1>
-        <hr>
+<div class="">
+    <div class="flex justify-between items-center mx-16 my-2">
+        <p class="opacity-75 uppercase tracking-wide font-bold"><i class="fa fa-shopping-cart mr-2"></i> Productos en el carrito</p>
+        <a href="{{route('carrito-vaciar')}}" class="no-underline bg-tertiary px-4 py-2 rounded text-white hover:bg-red">
+            <i class="fa fa-trash-alt mr-1"></i>Vaciar
+        </a>
     </div>
-    <div class="tabla-carrito">
+    <div class="mx-16">
         @if(count($carrito))
-        <div class="table-responsive">
+        <div class="table-responsive text-center">
             <table class="table table-black table-striped table-hover table-bordered">
                 <thead>
                     <tr>
@@ -20,11 +22,6 @@
                         <th>Cantidad</th>
                         <th>Precio Total</th>
                         <th>Eliminar</th>
-                        <th>
-                            <a href="{{route('carrito-vaciar')}}" class="btn btn-danger">
-                                <i class="fa fa-trash-o fa-3x"></i>Vaciar
-                            </a>
-                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,7 +39,7 @@
                             </a>
                         </td>
                         <td>{{number_format($item->precio * $item->cantidad, 2)}}</td>
-                        <td>
+                        <td class="">
                             <a href="{{route('carrito-borrar', $item->id)}}" class="btn btn-dangers" id="btn-dangerss">
                                 <i class="fa fa-trash-alt"></i>
                             </a>
@@ -51,20 +48,22 @@
                     @endforeach
                 </tbody>
             </table>
-            <hr>
-            <h3>
-                <span class="label label-success">Total: ${{number_format($total, 2)}}</span>
-            </h3>
+            <h1 class="rounded border py-2">
+                <span class="text-base text-2xl text-sm text-soft-black">Total: </span>${{number_format($total, 2)}}
+            </h1>
         </div>
         @else
         <h3><span class="label label-warning">No existen productos añadidos :'(</span></h3>
         @endif
-        <hr>
-        <p>
-            <a href="{{route('index')}}" class="btn btn-primary"><i class="fa fa-chevron-circle-left"></i> Seguir comprando</a>
-            <a href="{{route('orden-detalle')}}" class="btn btn-warning">Continuar <i class="fa fa-chevron-circle-right"></i></a>
-        </p>
 
+    </div>
+    <div class="text-center mt-4">
+        <a href="{{route('index')}}" class="rounded bg-primary px-4 py-2 mr-2 no-underline text-soft-black">
+            <i class="fa fa-chevron-circle-left"></i> Seguir comprando
+        </a>
+        <a href="{{route('orden-detalle')}}" class="rounded bg-primary px-4 py-2 ml-2 no-underline text-soft-black">
+            Continuar <i class="fa fa-chevron-circle-right"></i>
+        </a>
     </div>
 </div>
 @endsection
