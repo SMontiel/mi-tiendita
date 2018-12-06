@@ -4,12 +4,15 @@
 
 @section('content')
 
-    <h1>Vista principal de Categorías</h1>
-    <a href="{{ route('categorias.create') }}" class="rounded bg-primary px-4 py-2">
-        Nueva<i class="fa fa-plus-circle ml-1"></i>
-    </a>
+    <div class="flex justify-between items-center mx-16 my-4">
+        <p class="opacity-75 uppercase tracking-wide font-bold text-lg"><i class="fa fa-list"></i> Vista principal de Categorías</p>
+        <a href="{{route('categorias.create')}}" class="no-underline bg-tertiary px-4 py-2 rounded text-white hover:bg-red">
+            Nueva<i class="fa fa-plus-circle ml-1"></i>
+        </a>
+    </div>
 
-    <table class="table table-striped table-hover table-bordered">
+    <div class="mx-16 my-8">
+      <table class="table table-striped table-hover table-bordered">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -40,5 +43,7 @@
             </tr>
           @endforeach
         </tbody>
-    </table>
+      </table>
+    </div>
+
 @endsection

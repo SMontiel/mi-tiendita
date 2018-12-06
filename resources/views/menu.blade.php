@@ -8,9 +8,9 @@
     <div class="block w-full flex-grow sm:flex sm:items-center sm:w-auto">
       <div class="text-sm sm:flex-grow"></div>
       <div class="sm:inline-flex sm:items-center">
-        <a href="/acerca-de" class="mx-2 no-underline font-sans text-grey-darker border-b-2 border-transparent hover:border-tertiary hover:text-black">
-          Acerca de
-        </a>
+        <!--<a href="/acerca-de" class="mx-2 no-underline font-sans text-grey-darker border-b-2 border-transparent hover:border-tertiary hover:text-black">
+          Acerca de <i class="fa fa-info-circle ml-1"></i>
+        </a>-->
 
         @guest
             <a href="{{ route('login') }}" class="mx-2 no-underline font-sans text-grey-darker border-b-2 border-transparent hover:border-tertiary hover:text-black">
@@ -23,6 +23,9 @@
             @endif
         @else
 
+            <a href="{{ route('carrito') }}" class="mx-6 no-underline font-sans text-grey-darker border-b-2 border-transparent hover:border-tertiary hover:text-black">
+                Carrito <i class="fa fa-shopping-cart ml-1"></i>
+            </a>
             <div class="dropdown">
                 <div class="leading-none bg-secondary-lighter hover:shadow-md hover:border-grey-darker border p-1 rounded border-soft-black">
                     <div class="inline-flex">
