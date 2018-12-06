@@ -3,6 +3,7 @@
 @section('title', 'Login')
 
 @section('content')
+{{ Html::ul($errors->all()) }}
 <div class="w-full flex justify-center p-4">
     <div class="w-1/4 rounded shadow-lg">
         <div class="">
