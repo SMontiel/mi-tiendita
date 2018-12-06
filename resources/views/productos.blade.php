@@ -18,7 +18,7 @@
                         <img class="block h-48 rounded" src="/images/{{ $prod->url_foto }}" alt="">
                     </a>
                 </div>
-                <p class="text-soft-black">{{ $prod->nombre }}</p>
+                <p class="text-soft-black mt-2">{{ $prod->nombre }}</p>
                 <p class="text-3xl my-2">$ {{ $prod->precio }}</p>
                 <div class="flex justify-around items-center h-12 border-t">
                     <a href="{{route('carrito-agregar', $prod->id)}}" class="rounded no-underline bg-secondary px-2 py-1 text-black border-2 border-secondary hover:bg-white hover:text-black">

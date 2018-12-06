@@ -18,5 +18,8 @@
         "lodash": "^4.17.5",
         "tailwindcss": "^0.6.6",
         "vue": "^2.5.7"
+    },
+    "dependencies": {
+        "tailwindcss-tables": "^0.2.0"
     }
 }

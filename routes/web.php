@@ -70,3 +70,10 @@ Route::get('/ver-factura', [
     'middleware'=>'auth',
     'uses'=>'ProductoController@verFactura'
 ]);
+
+Route::resource('admin/categorias', 'Admin\CategoriasController')->middleware('admin.auth');
+Route::resource('admin/productos', 'Admin\ProductosController')->middleware('admin.auth');
+
+Route::get('admin', function() {
+    return view('admin.home');
+})->middleware('admin.auth');
